@@ -44,8 +44,14 @@
     <Compile Include="Arbol_B\BArbol.cs" />
     <Compile Include="Arbol_B\BEntry.cs" />
     <Compile Include="Arbol_B\BNodo.cs" />
+    <Compile Include="Arbol_B\Node.cs" />
     <Compile Include="Interfaces\IEntry.cs" />
     <Compile Include="Interfaces\INodo.cs" />
+    <Compile Include="Interfaces\ILinearStructure.cs" />
+    <Compile Include="Interfaces\INonLinearStructure.cs" />
+    <Compile Include="Interfaces\ITamañoTextoFijo.cs" />
+    <Compile Include="Interfaces\ITextoTamañoFijo.cs" />
+    <Compile Include="Operations\TextOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
