@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,8 @@ namespace LibraryClassLab04.Arbol_B
 {
     public class BArbol<TKey, T> where TKey : IComparable<TKey>
     {
-
         public BNodo<TKey, T> Raiz { get; set; }
-
         public int Grado { get; private set; }
-
         public int Altura { get; private set; }
 
         /// <summary>
@@ -48,10 +46,7 @@ namespace LibraryClassLab04.Arbol_B
         public void Insertar(TKey nuevaLlave, T nuevoApuntador)
         {
             InsertarRecursivo(this.Raiz, nuevaLlave, nuevoApuntador, null);
-
         }
-
-
         private void InsertarRecursivo(BNodo<TKey, T> nodo, TKey nuevaLlave, T nuevoApuntador, BNodo<TKey, T> nodoPadre)
         {
             int posicionInsertar = nodo.Entradas.TakeWhile(entry => nuevaLlave.CompareTo(entry.LLave) >= 0).Count();
@@ -108,7 +103,6 @@ namespace LibraryClassLab04.Arbol_B
                     return;
                 }
             }
-
         }
 
         /// <summary>
@@ -141,7 +135,6 @@ namespace LibraryClassLab04.Arbol_B
                 this.Raiz = this.Raiz.Hijos.Single();
                 this.Altura--;
             }
-
         }
 
         /// <summary>
@@ -156,11 +149,9 @@ namespace LibraryClassLab04.Arbol_B
             if (i < nodo.Entradas.Count && nodo.Entradas[i].LLave.CompareTo(LlaveEliminar) == 0)
 
             {
-
                 this.EliminarLlaveNodo(nodo, LlaveEliminar, i);
 
                 return;
-
             }
             // Eliminar la lleva de un sub arbol
             if (!nodo.EsHoja)
@@ -178,7 +169,6 @@ namespace LibraryClassLab04.Arbol_B
         private void EliminarLlaveSubArbol(BNodo<TKey, T> NodoPadre, TKey LlaveEliminar, int IndiceSubArbol)
         {
             BNodo<TKey, T> NodoHijo = NodoPadre.Hijos[IndiceSubArbol];
-
 
             if (NodoHijo.AlcanzaMinimaEntrada)
             {
@@ -237,7 +227,6 @@ namespace LibraryClassLab04.Arbol_B
                         if (!HijoDerecho.EsHoja)
 
                         {
-
                             NodoHijo.Hijos.AddRange(HijoDerecho.Hijos);
                         }
                         NodoPadre.Hijos.RemoveAt(indiceDerecho);
@@ -282,12 +271,9 @@ namespace LibraryClassLab04.Arbol_B
                     predecesorHijo.Entradas.AddRange(succesorHijo.Entradas);
                     predecesorHijo.Hijos.AddRange(succesorHijo.Hijos);
 
-
-
                     nodo.Entradas.RemoveAt(indiceLlaveNodo);
                     nodo.Hijos.RemoveAt(indiceLlaveNodo + 1);
                     this.EliminarInterno(predecesorHijo, LlaveEliminar);
-
                 }
 
             }
@@ -334,7 +320,6 @@ namespace LibraryClassLab04.Arbol_B
         /// <param name="nodoMover">Nodo a mover y cambiar de ubicacion</param>
         private void DividirHijo(BNodo<TKey, T> padreNodo, int nodoCorrer, BNodo<TKey, T> nodoMover)
         {
-
             var nuevoNodo = new BNodo<TKey, T>(this.Grado);
             if (Grado % 2 == 0)
             {
@@ -357,7 +342,6 @@ namespace LibraryClassLab04.Arbol_B
             }
 
 
-
             if (!nodoMover.EsHoja)
             {
                 if (Grado % 2 == 0)
@@ -370,7 +354,6 @@ namespace LibraryClassLab04.Arbol_B
                     nuevoNodo.Hijos.AddRange(nodoMover.Hijos.GetRange((this.Grado / 2) + 1, (this.Grado / 2) + 1));
                     nodoMover.Hijos.RemoveRange((this.Grado / 2) + 1, (this.Grado / 2) + 1);
                 }
-
             }
             padreNodo.Hijos.Insert(nodoCorrer + 1, nuevoNodo);
         }
