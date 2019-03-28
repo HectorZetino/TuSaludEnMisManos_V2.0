@@ -215,3 +215,4 @@ FakesAssemblies/
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
+.vs/TuSaludEnMisManos_V02/v15/.suo
